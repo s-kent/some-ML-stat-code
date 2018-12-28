@@ -44,8 +44,8 @@ print("ada score-train :",bdt.score(X,y))
 print("ada score-test :",bdt.score(X_test,y_test))
 bagging = BaggingClassifier(bdt, max_samples=2500, max_features=X.shape[1],bootstrap_features=False,n_estimators=20)
 bdt = bagging.fit(X,y)
-print("ada2 score-train :",bdt.score(X,y))
-print("ada2 score-test :",bdt.score(X_test,y_test))
+print("ada_bag score-train :",bdt.score(X,y))
+print("ada_bag score-test :",bdt.score(X_test,y_test))
 
 
 clf5 = ensemble.GradientBoostingClassifier(n_estimators=900,max_depth=4)
@@ -53,8 +53,8 @@ clf5 = ensemble.GradientBoostingClassifier(n_estimators=900,max_depth=4)
 
 clf7 = VotingClassifier(estimators=[('XGboost',clf5),('ada_bags', bdt), ('randomfor', clf)], voting='soft', weights=[1,2,1])
 clf7 = clf7.fit(X,y)
-print("forest score-train :",clf7.score(X,y))
-print("forest score-test :",clf7.score(X_test,y_test))
+print("voting score-train :",clf7.score(X,y))
+print("voting score-test :",clf7.score(X_test,y_test))
 
 
 
